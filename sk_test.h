@@ -24,5 +24,6 @@ typedef struct linked_list{
 
 int list_append(LIST* list , const char* str);
 
+void list_free(LIST* list);
 
 #endif /* SK_TEST_H_ */

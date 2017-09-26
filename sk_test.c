@@ -53,7 +53,11 @@ int main(int argc, char *argv[]) {
 		}
 	}
 
+	//Call My API to run the test
 	sk_test(result,linked_list,number_of_requests);
+
+	list_free(linked_list);
+
 	return EXIT_SUCCESS;
 }
 
@@ -82,4 +86,8 @@ int list_append(LIST* list , const char* str){
 	list->tail = node;
 
 	return 0;
+}
+
+void list_free(LIST* list){
+	NODE* node;
 }

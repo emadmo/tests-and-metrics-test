@@ -54,7 +54,10 @@ int main(int argc, char *argv[]) {
   }
 
   // Call My API to run the test
-  sk_test(&result, linked_list, number_of_requests, verbose);
+  if(sk_test(&result, linked_list, number_of_requests, verbose) == EXIT_FAILURE){
+	  printf("\nsk_metric_test failed !\n");
+	  return EXIT_FAILURE;
+  }
 
   printf("\nTest results for sk_mertic:\n"
          "===========================\n");

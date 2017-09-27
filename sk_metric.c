@@ -67,6 +67,9 @@ int sk_test(char **result, SK_METRIC_LIST *header_list, int number_of_requests,
         SK_LOG("Resonse code %ld", response_code);
       }
     }
+    else{
+    	return EXIT_FAILURE;
+    }
     for (i = 0;
          i < number_of_requests && (curl_easy_perform(curl_hdl) == CURLE_OK);
          i++) {

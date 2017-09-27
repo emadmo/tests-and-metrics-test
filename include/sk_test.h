@@ -8,5 +8,4 @@
 #ifndef SK_TEST_H_
 #define SK_TEST_H_
 
-
 #endif /* SK_TEST_H_ */

@@ -24,6 +24,8 @@ int main(int argc, char *argv[]) {
 	int number_of_requests = 0;
 	int opt;
 	char *result;
+	SK_VERBOSE verbose = SK_DISABLE_VERBOSE;
+
 	/* Test user input right number of arguments */
 	if(argc <3){
 		sk_test_usage();
@@ -32,7 +34,7 @@ int main(int argc, char *argv[]) {
 
 	result = malloc(MAX_BUFF_SIZE);
 
-	while((opt = getopt(argc, argv, "H:n:")) != -1){
+	while((opt = getopt(argc, argv, "H:n:v")) != -1){
 		switch (opt) {
 		case 'H':
 			printf("received header %s\n",optarg);
@@ -42,6 +44,9 @@ int main(int argc, char *argv[]) {
 			number_of_requests = atoi(optarg);
 			printf("Number of requests %d\n",number_of_requests);
 			break;
+		case 'v':
+			verbose = SK_ENABLE_VERBOSE;
+			break;
 		default:
 			sk_test_usage();
 			return EXIT_SUCCESS;
@@ -50,10 +55,10 @@ int main(int argc, char *argv[]) {
 	}
 
 	//Call My API to run the test
-	sk_test(&result,linked_list,number_of_requests);
+	sk_test(&result,linked_list,number_of_requests,verbose);
 
 	printf("\nTest results for sk_mertic:\n"
-		   "\n===========================\n");
+		   "===========================\n");
 	printf("%s\n",result);
 
 	sk_metric_list_free(&linked_list);
@@ -64,6 +69,7 @@ void sk_test_usage(void){
 	printf("Usage: skTest [options ...]\n"
 			"Options:\n"
 			"\t-H \"Header-name: Header-value\"\tcan be used multiple times, each time specifying an extra HTTP header to add to your request\n"
-			"\t-n <integer> \t\t\tnumber of HTTP requests to make \n");
+			"\t-n <integer> \t\t\tnumber of HTTP requests to make \n"
+			"\t-v            \t\t\tEnables detailed prints from HTTP requests\n");
 }
 

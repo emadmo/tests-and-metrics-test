@@ -1,6 +1,9 @@
 IDIR =include
 CC=gcc
-CFLAGS=-I$(IDIR) -Werror -DSK_METRIC_LOG
+CFLAGS=-I$(IDIR) -Werror
+
+#Comment this line to disbale SK_METRIC logs 
+CFLAGS+=-DSK_METRIC_LOG
 
 ODIR=obj
 LDIR =lib

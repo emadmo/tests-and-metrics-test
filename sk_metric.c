@@ -11,7 +11,9 @@
 #include "sk_test.h"
 #include "sk_metric.h"
 
-int sk_test(char** result , SK_METRIC_LIST* header_list , int number_of_requests){
+int sk_test(char** result , SK_METRIC_LIST* header_list ,
+		int number_of_requests , SK_VERBOSE verbose){
+
 	struct curl_slist *curl_header_list,*hosts,*curl_list_node;
 	char* host_ip;
 	char* p_result = *result;
@@ -46,8 +48,9 @@ int sk_test(char** result , SK_METRIC_LIST* header_list , int number_of_requests
 		// First step to set the options for the curl req
 		curl_easy_setopt(curl_hdl, CURLOPT_URL, TEST_HOST_NAME);
 		curl_easy_setopt(curl_hdl, CURLOPT_HTTPHEADER, curl_header_list );
-		//Disable curl lib verbose output
-		curl_easy_setopt(curl_hdl, CURLOPT_VERBOSE, 0L);
+		//Set curl lib verbose output
+		curl_easy_setopt(curl_hdl, CURLOPT_NOBODY, !verbose );
+		curl_easy_setopt(curl_hdl, CURLOPT_VERBOSE, verbose);
 
 		if(curl_easy_perform(curl_hdl) == CURLE_OK){
 

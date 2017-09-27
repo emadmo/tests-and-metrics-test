@@ -32,6 +32,10 @@ typedef struct linked_list{
 	SK_METRIC_NODE* tail;
 }SK_METRIC_LIST;
 
+typedef enum sk_verbose{
+	SK_DISABLE_VERBOSE = 0,
+	SK_ENABLE_VERBOSE = 1
+}SK_VERBOSE;
 /*
  * Takes a likst of HTTP headers and number of requests
  * Calculates
@@ -39,8 +43,10 @@ typedef struct linked_list{
  *  result             - Pointer to a string that will be filled with the results
  *  header_list        - Linked list of type SK_METRIC_LIST contains the HTTP headers
  *  number_of_requests - Number of times the requests will be sent affecting the calculated means
+ *  verbose            - If set to SK_ENABLE_VERBOSE , details about the HTTP operations will be printed
+ *                       IF set to SK_DISABLE_VERBOSE nothing will be printed
  */
-int sk_test(char** result , SK_METRIC_LIST* header_list , int number_of_requests);
+int sk_test(char** result , SK_METRIC_LIST* header_list , int number_of_requests, SK_VERBOSE verbose);
 
 // sk_metric_list functions
 /*

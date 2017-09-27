@@ -1,0 +1,44 @@
+       ##############################  
+      # SK technical test solution #
+     ##############################
+
+Welcome to my solution sk_metric library
+I hope you like it !
+
+The library comes with sk_test library which tests the sk_metric
+sk_test takes the following parameters :
+
+`-H "Header-name: Header-value"`: can be used multiple times, each time specifying an extra HTTP header to add to your request
+`-n <integer>`  number of HTTP requests to make . Has to be bigger than 0
+`-v`            Verbose enable , Enables detailed prints about the HTTP requests
+
+
+Requirments : 
+=============
+To be able to build you need the following :
+- gcc
+- curl library
+
+Building steps:
+===============
+
+make
+
+Cleaning the build :
+====================
+make clean
+
+Notes:
+======
+
+- By default the logs are enabled for the sk_metric lib . To disable Logs : 
+
+	comment out this line in the makefile :
+	CFLAGS+=-DSK_METRIC_LOG
+
+- You can use test target to test the library
+
+make test
+
+Thanks !
+Mohamed

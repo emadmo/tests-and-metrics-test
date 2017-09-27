@@ -37,7 +37,6 @@ int main(int argc, char *argv[]) {
   while ((opt = getopt(argc, argv, "H:n:v")) != -1) {
     switch (opt) {
     case 'H':
-      printf("received header %s\n", optarg);
       sk_metric_list_append(&linked_list, optarg);
       break;
     case 'n':

@@ -1,6 +1,6 @@
 IDIR =include
 CC=gcc
-CFLAGS=-I$(IDIR) -DSK_METRIC_LOG
+CFLAGS=-I$(IDIR) -Werror -DSK_METRIC_LOG
 
 ODIR=obj
 LDIR =lib
@@ -15,6 +15,7 @@ OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 
 $(ODIR)/%.o: %.c $(DEPS)
+	mkdir -p $(ODIR)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
 skTest: $(OBJ)

@@ -11,7 +11,7 @@
 #define TEST_HOST_NAME "http://www.google.com/"
 
 #ifdef SK_METRIC_LOG
-#define SK_LOG(...) printf(__VA_ARGS__)
+#define SK_LOG(...) printf("\n%s:%d:\t",__FUNCTION__,__LINE__);printf(__VA_ARGS__)
 #else
 #define SK_LOG(...)
 #endif
@@ -35,12 +35,27 @@ typedef struct linked_list{
 /*
  * Takes a likst of HTTP headers and number of requests
  * Calculates
+ * arguments
+ *  result             - Pointer to a string that will be filled with the results
+ *  header_list        - Linked list of type SK_METRIC_LIST contains the HTTP headers
+ *  number_of_requests - Number of times the requests will be sent affecting the calculated means
  */
 int sk_test(char** result , SK_METRIC_LIST* header_list , int number_of_requests);
 
 // sk_metric_list functions
+/*
+ * Append passed string to a passed list. Will create the list if not already allocated
+ * arguments
+ *  list      - Pointer to the list to be appended/created
+ *  str       - string to be added in the appended list node
+ */
 int sk_metric_list_append(SK_METRIC_LIST** list , const char* str);
 
+/*
+ * Frees the allocated list and all the nodes inside
+ * arguments
+ *  list      - Pointer to the list to be freed
+ */
 void sk_metric_list_free(SK_METRIC_LIST** list);
 
 #endif /* SK_METRIC_H_ */

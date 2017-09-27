@@ -4,7 +4,7 @@
  Author      : Mohamed Mansour
  Version     :
  Copyright   : Your copyright notice
- Description : Hello World in C, Ansi-style
+ Description : Test function for the sk_metric library
  ============================================================================
  */
 
@@ -16,7 +16,7 @@
 #include "sk_test.h"
 #include "sk_metric.h"
 
-
+#define MAX_BUFF_SIZE 500
 void sk_test_usage(void);
 
 int main(int argc, char *argv[]) {
@@ -27,10 +27,10 @@ int main(int argc, char *argv[]) {
 	/* Test user input right number of arguments */
 	if(argc <3){
 		sk_test_usage();
-		return 0;
+		return EXIT_SUCCESS;
 	}
 
-	result = malloc(1000);
+	result = malloc(MAX_BUFF_SIZE);
 
 	while((opt = getopt(argc, argv, "H:n:")) != -1){
 		switch (opt) {
@@ -44,7 +44,7 @@ int main(int argc, char *argv[]) {
 			break;
 		default:
 			sk_test_usage();
-			return 0;
+			return EXIT_SUCCESS;
 			break;
 		}
 	}
@@ -52,16 +52,18 @@ int main(int argc, char *argv[]) {
 	//Call My API to run the test
 	sk_test(&result,linked_list,number_of_requests);
 
-	sk_metric_list_free(&linked_list);
-
-	printf("\nTest results for sk_mertic:\n==================");
+	printf("\nTest results for sk_mertic:\n"
+		   "\n===========================\n");
 	printf("%s\n",result);
+
+	sk_metric_list_free(&linked_list);
 
 	return EXIT_SUCCESS;
 }
 void sk_test_usage(void){
-	printf("Usage:\n"
-						"-H \"Header-name: Header-value\" can be used multiple times, each time specifying an extra HTTP header to add to your request\n"
-						"-n <integer>                     number of HTTP requests to make \n");
+	printf("Usage: skTest [options ...]\n"
+			"Options:\n"
+			"\t-H \"Header-name: Header-value\"\tcan be used multiple times, each time specifying an extra HTTP header to add to your request\n"
+			"\t-n <integer> \t\t\tnumber of HTTP requests to make \n");
 }
 

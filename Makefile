@@ -1,6 +1,6 @@
 IDIR =include
 CC=gcc
-CFLAGS=-I$(IDIR)
+CFLAGS=-I$(IDIR) -DSK_METRIC_LOG
 
 ODIR=obj
 LDIR =lib
@@ -27,4 +27,4 @@ clean:
 	
 .PHONY: test
 test: skTest
-	./skTest -H "Accept: text/plain" -H "Access-Control-Request-Method: GET" -n5
+	./skTest -H "Accept-Language: es" -H "Access-Control-Request-Method: GET" -H "Cookie: ID=2017" -n 5

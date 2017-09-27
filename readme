@@ -4,6 +4,8 @@
 
 Welcome to my solution sk_metric library
 I hope you like it !
+I developed and tested on a Mac OS , but it should be the same for linux . 
+This was not tested on windows and the make file will not work with windows as compiler is only set to gcc!
 
 The library comes with sk_test library which tests the sk_metric
 sk_test takes the following parameters :
@@ -16,6 +18,7 @@ sk_test takes the following parameters :
 Requirments : 
 =============
 To be able to build you need the following :
+- Linux or Mac OS (make file does not support windows)
 - gcc
 - curl library
 
